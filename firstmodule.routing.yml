@@ -1,7 +1,15 @@
-firstmodule.settings:
-  path: //admin/structure/firstmodule/settings
-  default:
-    _controller: '\Drupal\firstmodule\Form\firstmoduleSettingsForm'
-    _title: 'This will add text field'
+system.site_information_settings:
+  path: '/admin/config/system/site-information'
+  defaults:
+    _form: 'Drupal\system\Form\SiteInformationForm'
+    _title: 'Basic site settings'
   requirements:
     _permission: 'administer site configuration'
+
+firstmodule.get_article:
+  path: '/data/{api_key}/node/{id}'
+  defaults:
+    _controller: '\Drupal\firstmodule\Controller\FirstmoduleController::get_article'
+    _title: 'This Article's all the  fields will come in JSON format'
+  requirements:
+    _permission: 'access content'

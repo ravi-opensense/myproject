@@ -1,18 +1,24 @@
 <?php
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 /**
 *Iplementation of hook_form_alter
 */
 
-function firstmodule_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if($form_id = 'system_site_information_settings') {
-    $form['site_api_key'] = [
+function firstmodule_form_system_site_information_settings_alter(&$form, FormStateInterface $form_state, $form_id) {
+	//die();
+	//$current_path = \Drupal::service('path.current')->getPath();
+  // if($form_id == 'system_site_information_settings') 
+  // {
+    $form['site_information']['site_api_key'] = [
     '#type' => 'textfield',
     '#title' => t('API KEY'),
     '#required' => false,
   ];
  $form['#submit'][] = 'firstmodule_handler';
-}
+ 
+ //dpm(print_r($form,true));
+// }
 }
 
 function firstmodule_handler($form, &$form_state) {
@@ -21,10 +27,11 @@ function firstmodule_handler($form, &$form_state) {
 	//drupal_set_message('site api key:'. $value);
 
 	$config= \Drupal::service('config.factory')->getEditable('firstmodule.settings');
-	  $config->set('api_key',$value);
+	  $config->set('site_api_key',$value);
 	  $config->save();
-	  
-	  echo $config->get('api_key');
-	  drupal_set_message('you configuration has been saved');exit();
+
+	  //$config->get('site_api_key');
+	  drupal_set_message('you configuration has been saved');
+	  //exit();
 	//print $config->get('api_key');exit;
 }
