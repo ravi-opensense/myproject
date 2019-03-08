@@ -1,0 +1,7 @@
+firstmodule.settings:
+  path: //admin/structure/firstmodule/settings
+  default:
+    _controller: '\Drupal\firstmodule\Form\firstmoduleSettingsForm'
+    _title: 'This will add text field'
+  requirements:
+    _permission: 'administer site configuration'

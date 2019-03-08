@@ -1,0 +1,4 @@
+name: My First Module
+type: module
+core: '8.x'
+description: This module will add text field in basic site settings.
